@@ -29,7 +29,6 @@ class KataYahtzeeTests: XCTestCase {
         super.setUp()
         kata = Yahtzee()
     }
-    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
@@ -122,4 +121,53 @@ class KataYahtzeeTests: XCTestCase {
     func testHigherPair() {
         XCTAssertEqual(6, kata.pair([1,2,3,1,3]))
     }
+    
+    func testNoTwoPairsReturnsZero() {
+        XCTAssertEqual(0, kata.twoPairs([1,2,3,4,5]))
+    }
+    
+    func testTwoPairs(){
+        XCTAssertEqual(6, kata.twoPairs([1,1,2,2,3]))
+    }
+    
+    func testTwoPairsInFourOfAKind(){
+        XCTAssertEqual(4, kata.twoPairs([1,1,1,1,3]))
+    }
+    
+    func testNoThreeOfAKind(){
+        XCTAssertEqual(0,kata.threeOfAKind([1,2,3,2,4]))
+    }
+    
+    func testThreeOfAKind(){
+        XCTAssertEqual(6,kata.threeOfAKind([1,2,2,2,4]))
+    }
+    
+    func testNoFourOfAKind() {
+        XCTAssertEqual(0,kata.fourOfAKind([1,2,2,2,4]))
+    }
+    
+    func testFourOfAKind() {
+        XCTAssertEqual(8,kata.fourOfAKind([1,2,2,2,2]))
+    }
+    
+    func testSmallStraight(){
+        XCTAssertEqual(15, kata.smallStraight([1,2,3,4,5]))
+    }
+    
+    func testNoSmallStraight(){
+        XCTAssertEqual(0, kata.smallStraight([1,2,3,4,2]))
+    }
+    
+    func testFullHouse(){
+        XCTAssertEqual(15, kata.fullHouse([1,6,1,1,6]))
+    }
+    
+    func testNoFullHouse(){
+        XCTAssertEqual(0, kata.fullHouse([1,6,3,1,6]))
+    }
+    
+    func testNoFullHouseFiveOfAKind(){
+        XCTAssertEqual(0, kata.fullHouse([6,6,6,6,6]))
+    }
+    
 }
